@@ -92,7 +92,7 @@ while numFrames>frameCounter
     e=[e e1'];
     
     %Frequency shaping
-    fre_shaper = freqshaper(y1,Fs,H_th,P_th,Lower_limit,Upper_limit,a);
+    fre_shaper = freqshapeMalitha(noisy,fs,H_th,P_th,Lower_limit,Upper_limit,a);
     fre_shap_final = [fre_shap_final fre_shaper'];
 end
 
@@ -118,17 +118,17 @@ figure;
 PLOT(in_clean,Fs,'Clean signal',1)      % Plot the clean signal as a function of time.
 PLOT(in_noisy_1,Fs,'Input noisy signal 1',2)% Plot the noisy signal as a function of time.
 PLOT(in_noisy_2,Fs,'Input noisy signal 2',3)                % Plot the VAD data as a function of time.
+% PLOT(coherence_final,Fs,'coherence_final',3)                 % Plot the VAD data as a function of time.
 
 figure;
-PLOT(coherence_final,Fs,'coherence_final',1)% Plot the coherance output signal as a function of time.
-PLOT(vad,Fs,'VAD',2)                 % Plot the VAD data as a function of time.
 PLOT(nlms,Fs,'NLMS output',3)        % Plot the nlms output as a function of time.
+PLOT(coherence_final,Fs,'coherence_final',1)% Plot the noisy signal as a function of time.
+PLOT(vad,Fs,'VAD',2)                 % Plot the VAD data as a function of time.
 
 figure;
 PLOT(coherence_final,Fs,'coherence_final',1)% Plot the noisy signal as a function of time.
-PLOT(nlms,Fs,'NLMS output',2)        % Plot the nlms output as a function of time.
-PLOT(fre_shap_final,Fs,'fre_shap_final',3) % Plot the fre_shap_final as a function of time.
-
+PLOT(vad,Fs,'VAD',2)                 % Plot the VAD data as a function of time.
+PLOT(nlms,Fs,'NLMS output',3)        % Plot the nlms output as a function of time.
 
 %% calculate SNR
 SNR_noisy1=20*log10(norm(in_clean)/norm(in_noisy_1-in_clean));
