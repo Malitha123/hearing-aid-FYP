@@ -49,10 +49,15 @@ last = n_frame_coherance;
 frameCounter = 1;
 
 while numFrames>frameCounter
-    noisy1 = in_noisy_1 (first:last); %input signal frame
-    noisy2 = in_noisy_2 (first:last); %input signal frame
+    noisy1 = in_noisy_1 (first:last); %input signal1 frame
+    noisy2 = in_noisy_2 (first:last); %input signal2 frame
+    
+    %feedback
+    feedback_Signal1 = Feedback(noisy1);
+    feedback_Signal2 = Feedback(noisy2);
+    
     %coherance function
-    coherance_out=Coherence(noisy1,noisy2,Fs);
+    coherance_out=Coherence(feedback_Signal1',feedback_Signal2',Fs);
     if (last==N)
         coherance_out=coherance_out(1+(n_frame_adaptive/4):end);
     else
