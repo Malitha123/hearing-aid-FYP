@@ -1,4 +1,4 @@
-function [vad,iVad,fVad,RMSEArray,periodicityArray, ratioArray, thresholdArray, energyMin,energyMax,deltaEmin, deltaEmax, lambda, threshold, initialEnergyMin] = VoiceActivityDetectorLoop_new(input,fs,frameCounter,n_frame, iVad,fVad,RMSEArray,periodicityArray, ratioArray, thresholdArray,energyMin,energyMax,deltaEmin, deltaEmax, lambda, threshold, initialEnergyMin)
+function [vad,iVad,fVad,RMSEArray,periodicityArray, ratioArray, thresholdArray, energyMin,energyMax,deltaEmin, deltaEmax, lambda, threshold, initialEnergyMin] = VAD(input,fs,frameCounter,n_frame, iVad,fVad,RMSEArray,periodicityArray, ratioArray, thresholdArray,energyMin,energyMax,deltaEmin, deltaEmax, lambda, threshold, initialEnergyMin)
 
 frame = input';
 initialNoiseDuration = 50*fs/1000; %50ms

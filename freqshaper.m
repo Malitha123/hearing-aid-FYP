@@ -1,4 +1,4 @@
-function y_shaped = freqshaper(x,fs,h_th,p_th,Lower_limit,Upper_limit,a)
+function y_shaped = Freqshaper(x,fs,h_th,p_th,Lower_limit,Upper_limit,a)
 
 % x - an input sound signal
 % fs - the sampling frequency of the input signal
@@ -6,7 +6,7 @@ function y_shaped = freqshaper(x,fs,h_th,p_th,Lower_limit,Upper_limit,a)
 % p_th - Threshold of pain
 % Lower_limit - Lower limit of the hearing loss range
 % Upper_limit - Upper limit of the hearing loss range
-% a - 
+% a - smooting range
 
 first = Lower_limit/2;
 second = Lower_limit;
@@ -99,74 +99,10 @@ while(k/N <= .5)
    k=k+1;
 end;
 
-% k_v = (0:N-1)/N;
-% figure;
-% plot(k_v,gain);
-% title('Gain');%entire filter transfer function
-% figure;%non-redundant filter transfer function
-% 
-% k_v = k_v*fs;
-% k_v = k_v(1:N/2+1);
-% plot(k_v,gain(1:N/2+1));
-% title('Frequency Shaper Transfer Function');
-% xlabel('Frequency (Hertz)');
-% ylabel('Gain');
-%xlim([0 10000]);
 Y = X.*gain; % for X refer line no.27
-
-% figure;
-% subplot(3,1,1)
-% plot(k_v,abs(X(1:N/2+1)));
-% title('Frequency before adding gain');
-% xlabel('Frequency (Hertz)');
-% ylabel('Gain');
-% subplot(3,1,2)
-% plot(k_v,abs(Y(1:N/2+1)));
-% title('Frequency after adding gain');
-% xlabel('Frequency (Hertz)');
-% ylabel('Gain');
-% subplot(3,1,3)
-% plot(k_v,abs(Y_shaped(1:N/2+1)));
-% title('Frequency after adjusting');
-% xlabel('Frequency (Hertz)');
-% ylabel('Gain');
-
 y = real(ifft(Y,N));
 y_shaped = real (ifft(Y_shaped,N));
 y = y(1:x_length);
 y_shaped = y_shaped(1:x_length);
-% t = (0:1/fs:(x_length-1)/fs);
-% figure;
-% subplot(3,1,1);
-% plot(x(100:end));
-% title('Input Signal');
-% subplot(3,1,2);
-% plot(y(100:end));
-% title('Signal after addition of gain');
-% subplot(3,1,3);
-% plot(y_shaped(100:end));
-% title('Adjusted Signal');
-% 
-% figure;
-% subplot(3,1,1)
-% plot(k_v,mag2db(abs(X(1:N/2+1))));
-% title('Frequency before adding gain');
-% xlabel('Frequency (Hz)');
-% ylabel('Gain');
-% subplot(3,1,2)
-% plot(k_v,mag2db(abs(Y(1:N/2+1))));
-% title('Frequency after adding gain');
-% xlabel('Frequency (Hz)');
-% ylabel('Gain');
-% subplot(3,1,3)
-% plot(k_v,mag2db(abs(Y_shaped(1:N/2+1))));
-% title('Frequency after adjusting');
-% xlabel('Frequency (Hz)');
-% ylabel('Gain');
-% 
-% figure;
-% plot(k_v,mag2db(abs(gain(1:N/2+1))));
-% title('Frequency Shaper Transfer Function');
-% xlabel('Frequency (Hz)');
-% ylabel('Gain(dB)');
+
 end

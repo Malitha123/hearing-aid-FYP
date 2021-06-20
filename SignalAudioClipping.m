@@ -4,7 +4,7 @@
 % y = output data
 % @Akhtar, 31-05-2018
 
-function [y] = signal_audio_clipping(x,threshold)
+function [y] = SignalAudioClipping(x,threshold)
 x ( x > threshold )   =  threshold; 
 x ( x < -threshold )  = -threshold;
 y = x;

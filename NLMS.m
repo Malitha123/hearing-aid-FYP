@@ -1,4 +1,4 @@
-function [e, y, w1, xx] = NLMS_Loop(noisy, vad, w1, xx, M)
+function [e, y, w1, xx] = NLMS(noisy, vad, w1, xx, M)
 
 noise = awgn(vad,20,'measured');
 d = vad  + noise;    %desired signal

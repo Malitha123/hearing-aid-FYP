@@ -165,5 +165,5 @@ function Output_Signal = Feedback(Input)
 %     Input_Signal    = signal_audio_clipping(sn,1);
 %     Input_Gz        = signal_audio_clipping(un,1);
 %     Output_Gz       = signal_audio_clipping(yn,gain_Gz);
-    Output_Signal    = signal_audio_clipping(yn_total,gain_Gz);
+    Output_Signal    = SignalAudioClipping(yn_total,gain_Gz);
 end

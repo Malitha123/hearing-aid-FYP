@@ -1,7 +1,7 @@
 % *************************************************************************
 % Small helper function to process audio - mono conversion, DC removal, etc
 % *************************************************************************
-function in = processAudio(clean_speech,processed_speech)
+function in = ProcessAudio(clean_speech,processed_speech)
 
 % % Mono-fy, remove DC, normalize
 % Sum = sum(inp);
