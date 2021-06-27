@@ -5,7 +5,7 @@ close all;
 %% read input signals
 [in_noisy_1,Fs] = audioread('Unp_Front_SB_90_180.WAV');
 [in_noisy_2,Fs] = audioread('Unp_Rear_SB_90_180.WAV');
-[in_clean,Fs2] = audioread('COH_SB_90_180.WAV');
+[in_clean,Fs2] = audioread('Clean3.WAV');
 N=length(in_noisy_1);
 n_frame_coherance = 640;
 n_frame_adaptive = 320;  % (20ms) processing frame size
@@ -137,7 +137,9 @@ SNR_coherence=20*log10(norm(in_clean)/norm(coherence_final-in_clean(1:length(coh
 SNR_nlms=20*log10(norm(in_clean)/norm(nlms-in_clean(1:length(nlms))));
 
 %% save results
-% audiowrite('noisy.wav', in_noisy, Fs);
+% audiowrite('noisy.wav', in_noisy_1, Fs);
 % audiowrite('clean.wav', in_clean, Fs);
 % audiowrite('nlms.wav', nlms, Fs);
+% audiowrite('coherence.wav', coherence_final, Fs);
+
 

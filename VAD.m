@@ -87,7 +87,7 @@ else
     % Get the ratio of the frequencies above and below 2 kHz in the voice
     % band (0 - 4 kHz). We will then use the ratio of these energies to
     % make decisions around the voicing of the frame.
-    window = (hamming(size(frame, 2)))';
+    window = (hamming(size(frame,2)))';
 
     % FFT computation & normalization
     fftLength = 2^nextpow2(length(frame));

@@ -16,7 +16,8 @@ for i=1:length(input)
     end
 end
 % Output now contains the center-clipped signal. Let's get it's ACF.
-acf = xcorr(output);
+%[m,n]=size(output)
+acf = xcorr2(output);
 
 % Now, we want the ACF only for lag values that fall within the pitch
 % period limits. Let's take 2.5ms to 15ms, i.e. with a sampling rate of
