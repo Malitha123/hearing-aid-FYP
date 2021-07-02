@@ -1,9 +1,9 @@
-function c = xcorr2(x) % x=320*1
+function c = xcorr(x) % x=320*1
 
 p=size(x,1); %1 then 0
 if p == 1  
     x1=x';      % always a column vector  
-    c1 = xcorr2(x1);   
+    c1 = xcorr(x1);   
     c = c1';  
     return
 end

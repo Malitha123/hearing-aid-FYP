@@ -1,6 +1,6 @@
 % Calculate time
-clear all;
-close all;
+% clear all;
+% close all;
 
 %% read input signals
 [in_noisy_1,Fs] = audioread('Unp_Front_SB_90_180.WAV');
