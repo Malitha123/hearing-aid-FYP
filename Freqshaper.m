@@ -17,7 +17,7 @@ x_length = length(x);
 n = nextpow2(x_length);
 N = 2^n;
 T = 1/fs;
-X = fft(x,N);
+X = fft_new(x,N);
 Y_shaped = zeros(N,1);
 gain = zeros(N,1);
 
@@ -98,11 +98,11 @@ while(k/N <= .5)
    end
    k=k+1;
 end;
-
-Y = X.*gain; % for X refer line no.27
-y = real(ifft(Y,N));
-y_shaped = real (ifft(Y_shaped,N));
+% x=size(X)
+% Gain=size(gain)
+Y = X'.*gain; % for X refer line no.27
+y = real(ifft_new(Y,N));
+y_shaped = real (ifft_new(Y_shaped,N));
 y = y(1:x_length);
 y_shaped = y_shaped(1:x_length);
 
-end

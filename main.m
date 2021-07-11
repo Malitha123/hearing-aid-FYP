@@ -1,11 +1,15 @@
 % Calculate time
-% clear all;
-% close all;
+%clear all;
+%close all;
+fprintf('The execution starts at time %s\n', datestr(now,'HH:MM:SS.FFF'))
 
 %% read input signals
 [in_noisy_1,Fs] = audioread('Unp_Front_SB_90_180.WAV');
+in_noisy_1=in_noisy_1(1:6000);
 [in_noisy_2,Fs] = audioread('Unp_Rear_SB_90_180.WAV');
+in_noisy_2=in_noisy_2(1:6000);
 [in_clean,Fs2] = audioread('Clean3.WAV');
+in_clean=in_clean(1:6000);
 N=length(in_noisy_1);
 n_frame_coherance = 640;
 n_frame_adaptive = 320;  % (20ms) processing frame size
@@ -44,7 +48,7 @@ y = [];
 e = [];
 
 %% initialising parameters for frequency shaper
-H_th = db2mag(45);   % Threshold of hearing
+H_th = db2mag(20);   % Threshold of hearing
 P_th = db2mag(70);   % Threshold of pain
 Lower_limit = 2000;  % Lower limit of the hearing loss range
 Upper_limit = 5000;  % Upper limit of the hearing loss range
@@ -85,7 +89,7 @@ while numFrames>frameCounter
     
     %Frequency shaping
     fre_shaper = Freqshaper(y1,Fs,H_th,P_th,Lower_limit,Upper_limit,a);
-    fre_shap_final = [fre_shap_final fre_shaper'];
+    fre_shap_final = [fre_shap_final fre_shaper];
     
     %Update framecounter, first and last variables
     frameCounter = frameCounter+1;
@@ -104,6 +108,10 @@ nlms = y';
 e=e';
 coherence_final=coherence_final';
 fre_shap_final = fre_shap_final';
+Max=max(max(fre_shap_final),(min(fre_shap_final))*-1);
+fre_shap_final = fre_shap_final/Max;
+
+fprintf('The execution ends at time %s\n', datestr(now,'HH:MM:SS.FFF'))
 
 %% normalization before getting SNRs
 nlms = ProcessAudio(in_noisy_1,nlms);
@@ -134,7 +142,7 @@ PLOT(fre_shap_final,Fs,'fre_shap_final',3) % Plot the fre_shap_final as a functi
 SNR_noisy1=20*log10(norm(in_clean)/norm(in_noisy_1-in_clean));
 SNR_noisy2=20*log10(norm(in_clean)/norm(in_noisy_2-in_clean));
 SNR_coherence=20*log10(norm(in_clean)/norm(coherence_final-in_clean(1:length(coherence_final))));
-SNR_nlms=20*log10(norm(in_clean)/norm(nlms-in_clean(1:length(nlms))));
+SNR_nlms=20*log10(norm(in_clean)/norm(nlms-in_clean(1:length(nlms))))
 
 %% save results
 % audiowrite('noisy.wav', in_noisy_1, Fs);

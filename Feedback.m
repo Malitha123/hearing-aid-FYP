@@ -16,9 +16,9 @@ function Output_Signal = Feedback(Input)
     muw1_min    = 1e-6;         % Min bound for step-size W1
     muw2_min    = 1e-6;         % Min bound for step-size W2
     Th_T1       = 1e-3;         % Thresholding paramter T1
-    Th_T2       = 1;            % Thresholding paramter T2
+    Th_T2       = 1;            % Thresholding paramter T2   should be less than 1
     Th_T3       = 1;            % Thresholding paramter T3
-    Th_T4       = 10;           % Thresholding paramter T4
+    Th_T4       = 10;           % Thresholding paramter T4   should estimated from pe2n
 
     % Generate simple delay-gain feedforward Path G(z)
     M1 =64 ;                       % Filter length for modeling filter
@@ -29,9 +29,9 @@ function Output_Signal = Feedback(Input)
     N       = length (Gz);                  % length of feedforward path
 
     % geneate prob signal
-    probe_var = 10^(-SNR_prob/10) * VAR_sn;
+    probe_var = 10^(-SNR_prob/10) * VAR_sn;  %----> probe_var = var(Input)
     probe = randn(size(Input));
-    probe = sqrt(probe_var/var(probe)) * probe;
+    probe = sqrt(probe_var/var(probe)) * probe;  
 
     % Siganl Definition
     xn          = zeros(1,len);    % Mic input

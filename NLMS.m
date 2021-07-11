@@ -1,7 +1,7 @@
 function [e, y, w1, xx] = NLMS(noisy, vad, w1, xx, M)
 
-%noise = awgn(vad,20,'measured');
-noise = awgn2(20,length(vad),vad);
+noise = awgn_new(vad,20,'measured');
+%noise = awgn2(20,length(vad),vad);
 d = vad  + noise;    %desired signal
 Ns=length(d);
 y=zeros(Ns,1);

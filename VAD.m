@@ -91,7 +91,16 @@ else
 
     % FFT computation & normalization
     fftLength = 2^nextpow2(length(frame));
-    theFFT = fft(frame.*window, fftLength);
+%     theFFT = fft(frame.*window, fftLength);
+    theFFT = fft_new(frame.*window, fftLength);
+    
+% %     figure;
+% %     t=0:fftLength-1;
+% %     subplot(2,1,1);
+% %     plot(t,theFFT);
+% %     subplot(2,1,2);
+% %     plot(t,theFFT2);
+    
     fftLength = length(theFFT);
     fftSq = (theFFT).*conj(theFFT);
     fftSqNorm = fftSq/fftLength;

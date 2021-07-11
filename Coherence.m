@@ -48,8 +48,10 @@ while endFrameSample<lenS
     wFrame1=Frame1 .* window;
     wFrame2=Frame2 .* window;
 
-    X1=fft(wFrame1,FFT_LEN);
-    X2=fft(wFrame2,FFT_LEN);
+    X1=fft_new(wFrame1,FFT_LEN);
+    X1=X1';
+    X2=fft_new(wFrame2,FFT_LEN);
+    X2=X2';
 
     if (nFrame==1)
         PX1X1=abs(X1).^2;
@@ -75,7 +77,8 @@ while endFrameSample<lenS
     H=abs([G ;flipud(G)]);    %Fullband final filter 
 
      %IFFT and OLA
-     enhSpeech_Frame_tmp=real(ifft( H .* X1,FFT_LEN));        
+     enhSpeech_Frame_tmp=real(ifft_new( H .* X1,FFT_LEN)); 
+     enhSpeech_Frame_tmp=enhSpeech_Frame_tmp';
      enhSpeech_Frame=enhSpeech_Frame_tmp(1:frameLength);
      enhanced_ouput(iniFrameSample:endFrameSample)=enhSpeech_Frame + enhanced_ouput(iniFrameSample:endFrameSample);       
 
