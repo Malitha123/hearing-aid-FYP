@@ -20,8 +20,8 @@ If you find our work useful. Please consider giving a star :star: and a citation
 
 
 ### Evaluation
-
-To evaluate the performance, go to each folder and run the 'main.m' file
+- You can download the NOIZEUS dataset from this [link](http://ecs.utdallas.edu/loizou/speech/noizeus/). Sinhala database is included in the repo.
+- To evaluate the performance, go to each folder and run the 'main.m' file
 
 
 
